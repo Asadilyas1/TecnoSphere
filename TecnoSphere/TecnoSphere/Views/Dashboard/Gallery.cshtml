@@ -1,0 +1,75 @@
+﻿@model TecnoSphere.Models.SingleFileModel
+@{
+    ViewData["Title"] = "Gallery";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+<link href="~/css/Gallery.css" rel="stylesheet" asp-append-version="true"/>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Gallery</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Gallery</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" style="float: left">List of Gallery</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <form asp-action="Gallery" asp-controller="Dashboard" class="dropzone needsclick dz-clickable" id="uploader" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <select asp-for="AlbumID" asp-items="@ViewBag.AlbumID" class="form-control"></select>
+                            </div>
+                            <div class="fallback">
+                                <input type="file" asp-for="File" accept=".png, .jpg, .jpeg, .gif" id="ssi-upload" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <!-- [ Gallery-Grid ] start -->
+            <div class="col-sm-12">
+                <!-- [ Image-Grid ] start -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Gallery Images</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="LoadGallery"></div>
+                    </div>
+                </div>
+                <!-- [ Image-Grid ] end -->
+            </div>
+            <!-- [ Gallery-Grid ] end -->
+        </div>
+        <!-- [ Main Content ] end -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/js/Gallery.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,352 @@
+﻿@model IEnumerable<TecnoSphere.Models.Portfolio>
+@{
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+    ViewData["Title"] = "Portfolio";
+}
+<style>
+    .status-label {
+        border-radius: 0.25em;
+        color: #fff;
+        display: inline;
+        font-size: 75%;
+        font-weight: 500;
+        line-height: 1;
+        padding: 0.3em 0.7em 0.4em;
+        text-align: center;
+        vertical-align: baseline;
+        white-space: nowrap;
+    }
+
+    .label-success {
+        background-color: #36c6d3;
+        border: 1px solid #27a4b0 !important;
+    }
+
+    .label-info {
+        background-color: #659be0;
+        border: 1px solid #3a80d7 !important;
+    }
+
+    .label-warning {
+        background-color: #f1c40f;
+        border: 1px solid #c29d0b !important;
+    }
+
+    input[type=checkbox] {
+        cursor: pointer;
+        margin: 0 0.5rem 0 0;
+        position: relative;
+        top: 0;
+    }
+
+        input[type=checkbox]:checked:before {
+            transform: rotate(-45deg) scale(1);
+        }
+
+        input[type=checkbox]:before {
+            border-color: #58b3f0;
+            border-style: none none solid solid;
+            border-width: 2px;
+            content: "";
+            height: 5px;
+            left: 1px;
+            margin: auto;
+            position: absolute;
+            right: 0;
+            top: 0.2em;
+            transform: rotate(-45deg) scale(0);
+            transition: transform .4s cubic-bezier(.45, 1.8, .5, .75);
+            width: 10px;
+            z-index: 1;
+        }
+
+        input[type=checkbox]:checked:after {
+            border-color: #58b3f0;
+        }
+
+        input[type=checkbox]:after {
+            background: #fff;
+            border: 1px solid #c4cdd5;
+            border-radius: 3px;
+            bottom: 0;
+            content: "";
+            cursor: pointer;
+            height: 16px;
+            left: -1px;
+            margin: auto;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 16px;
+        }
+
+    .onoffswitch {
+        position: relative;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        width: 45px;
+    }
+
+    .onoffswitch-label {
+        border: 2px solid #e6e6e6;
+        border-radius: 20px !important;
+        -webkit-border-radius: 20px !important;
+        -moz-border-radius: 20px !important;
+        cursor: pointer;
+        display: block;
+        overflow: hidden;
+    }
+
+    .onoffswitch-switch {
+        background: #a1a1a1;
+        border: 2px solid #e6e6e6;
+        border-radius: 50% !important;
+        bottom: 0;
+        height: 20px;
+        margin: 0;
+        position: absolute;
+        right: 26px;
+        top: 0;
+        transition: all .3s ease-in 0s;
+        width: 20px;
+    }
+
+    .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+        background-color: #d64635;
+        right: 0;
+    }
+
+    .onoffswitch-label .onoffswitch-inner {
+        margin-left: 0;
+    }
+
+    .onoffswitch-inner {
+        margin-left: -100%;
+        transition: margin .3s ease-in 0s;
+        width: 200%;
+    }
+
+        .onoffswitch-inner:before {
+            background-color: #eee;
+            color: #e6e6e6;
+            content: "";
+            padding-left: 10px;
+        }
+
+        .onoffswitch-inner:after,
+        .onoffswitch-inner:before {
+            box-sizing: border-box;
+            color: #fff;
+            float: left;
+            font-size: 15px;
+            font-weight: 700;
+            height: 15px;
+            line-height: 15px;
+            padding: 0;
+            width: 50%;
+        }
+
+        .onoffswitch-inner:after {
+            background-color: #eee;
+            color: #a38282;
+            content: "";
+            padding-right: 10px;
+            text-align: right;
+        }
+
+        .onoffswitch-inner:after,
+        .onoffswitch-inner:before {
+            box-sizing: border-box;
+            color: #fff;
+            float: left;
+            font-size: 15px;
+            font-weight: 700;
+            height: 15px;
+            line-height: 15px;
+            padding: 0;
+            width: 50%;
+        }
+
+    input[type=checkbox] {
+        cursor: pointer;
+        margin: 0 0.5rem 0 0;
+        position: relative;
+        top: 0;
+    }
+
+    .onoffswitch-checkbox {
+        display: none;
+    }
+</style>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Portfolio's</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Portfolio's</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" style="float: left">List of Portfolio's</h3>
+                        <a asp-action="AddPortfolio" asp-controller="Dashboard" style="float: right;" class="btn btn-primary btn-sm">Add New Portfolio</a>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="PortfolioDatatable" width="100%" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Title</th>
+                                        <th>Image</th>
+                                        <th>Link</th>
+                                        <th>Visibility</th>
+                                        <th>Operations</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        var i = 1;
+                                        foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@i</td>
+                                                <td><img src="~/Portfolio/@item.Image" width="50" alt="No Image" /></td>
+                                                <td>@item.Title</td>
+                                                <td><a href="@item.Link" target="_blank">@item.Link</a></td>
+                                                <td>
+                                                    @{
+                                                        var check = "";
+                                                        if (item.Visibility == 1)
+                                                        {
+                                                            check = "checked";
+                                                        }
+                                                    }
+                                                    <div class="onoffswitch">
+                                                        <input type="checkbox" class="onoffswitch-checkbox" onclick="Visibility('@item.PortfolioID')" name="@item.PortfolioID" id="Visibility-@item.PortfolioID" value="0" @check>
+                                                        <label class="onoffswitch-label" for="Visibility-@item.PortfolioID">
+                                                            <span class="onoffswitch-inner"></span>
+                                                            <span class="onoffswitch-switch"></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a asp-action="EditPortfolio" asp-controller="Dashboard" asp-route-id="@item.PortfolioID" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                                    <a href="javascript:void(0)" onclick="Delete('@item.PortfolioID')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+
+                                            i = i + 1;
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+@section Scripts {
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $('#PortfolioDatatable').DataTable({
+            autoWidth: false,
+            columnDefs: [
+                {
+                    targets: ['_all'],
+                    className: 'mdc-data-table__cell',
+                },
+            ],
+        });
+
+        function Visibility(id) {
+            var Visibility = 0;
+            if ($('#Visibility-' + id).prop("checked") == true) {
+                Visibility = 1;
+            }
+            swal({
+                title: "Are you sure?",
+                text: "You want to change the visibility!",
+                type: "warning",
+                buttons: true,
+                dangerMode: false,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: "/Dashboard/PortfolioStatus",
+                            type: "POST",
+                            data: {
+                                PortfolioID: id,
+                                Visibility: Visibility
+                            },
+                            dataType: "json",
+                            success: function () {
+                                swal("Done!", "It was succesfully changed!", "success");
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                swal("Error deleting!", "Please try again", "error");
+                            }
+                        });
+                    } else {
+                        swal("Your imaginary file is safe!");
+                    }
+                });
+        }
+
+        function Delete(id) {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: "/Dashboard/DeletePortfolio",
+                            type: "POST",
+                            data: {
+                                id: id
+                            },
+                            dataType: "json",
+                            success: function () {
+                                swal("Done!", "It was succesfully deleted!", "success");
+                                window.location.href = '../Dashboard/Portfolio';
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                swal("Error deleting!", "Please try again", "error");
+                            }
+                        });
+                    } else {
+                        swal("Your imaginary file is safe!");
+                    }
+                });
+        }
+    </script>
+}

@@ -1,0 +1,132 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.logo-section {
+    padding: 20px;
+    background-color: black;
+}
+
+.logo-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.logo-wrap img {
+    height: 50px;
+}
+
+.confirm-img {
+    display: flex;
+    justify-content: center;
+}
+
+.email-ul-block {
+    padding: 50px 0px;
+}
+
+.confirm-img img {
+    height: 100px;
+}
+
+.email-confirmation-heading h1,.email-further-action h1 {
+    font-size: 50px;
+}
+
+.email-container {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.email-confirm-context {
+    text-align: center;
+    padding: 0px 30px;
+}
+
+.email-confirm-context {
+    color: black;
+    font-size: 15px;
+    margin: 20px 0;
+}
+
+.delivered-box {
+    padding: 0px 30px;
+    margin: 50px 0px;
+}
+
+.delivered-box-wrap {
+    padding: 20px;
+    background-color: #fca311;
+}
+
+.deliverd-items {
+    padding: 0px;
+}
+
+.deliverd-items li {
+    list-style: none;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.emial-deliverd-list {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.custom-container {
+    width: 60%;
+    margin: 0 auto;
+}
+.email-confirm-subheading{
+    font-size: 25px;
+    font-weight: 100;
+    margin: 30px 0px;
+}
+.primary-button{
+    background-color: #fca311 !important;
+    color: white !important;
+    font-size: 20px;
+    font-weight: 600 !important;
+}
+.footer{
+    background-color: black;
+    padding: 30px;
+} 
+.email-footer-icon-bar ul{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+}  
+.email-footer-icon-bar li{
+    list-style: none;
+}
+.email-footer-icon-bar li i{
+    font-size: 30px;
+    color: white;
+}
+.email-cover-divider{
+    border: 1px solid gray;
+    margin: 20px;
+}
+.email-footer-bar p{
+    margin: 0px;
+    color: gray;
+}
+.email-footer-bar p a{
+    text-decoration: none;
+    color: gray;
+}
+@media only screen and (max-width: 820px) {
+    .custom-container {
+      width: 85%;
+    }
+  }
+  

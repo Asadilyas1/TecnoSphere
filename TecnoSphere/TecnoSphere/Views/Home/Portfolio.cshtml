@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TecnoSphere.Models.Portfolio>
+@{
+    ViewData["Title"] = "Portfolio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Hero -->
+<section id="slider" class="hero p-0 odd featured">
+    <div class="swiper-container no-slider animation slider-h-75">
+        <div class="swiper-wrapper">
+            <!-- Particles -->
+            <div id="particles-1" class="particles full-image" data-particle="space" data-mask="70"></div>
+
+            <!-- Item 1 -->
+            <div class="swiper-slide slide-center">
+
+
+                <div class="slide-content row text-center">
+                    <div class="col-12 mx-auto inner">
+                        <h1 data-aos="zoom-out-up" data-aos-delay="400" class="title effect-static-text">Our Portfolio</h1>
+                        <nav data-aos="zoom-out-up" data-aos-delay="800" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Our Portfolio</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Grid -->
+<section id="portfolio-grid" class="section-1 showcase portfolio blog-grid filter-section">
+    <div class="overflow-holder">
+        <div class="container">
+            <div class="row text-center intro">
+                <div class="col-12">
+                    <h2 class="mb-0">What We Do</h2>
+                </div>
+            </div>
+            <div class="row items filter-items">
+                @foreach (var item in Model)
+                {
+                    <div class="col-12 col-md-6 col-lg-4 item filter-item">
+                        <a href="@item.Link" target="_blank">
+
+                        <div class="row card p-0 text-center">
+                            <div class="gallery">
+                                <a href="#" class="image-over">
+                                    <img src="~/Portfolio/@item.Image" alt="Lorem ipsum">
+                                </a>
+                            </div>
+                            <div class="card-caption col-12 p-0">
+                                <div class="card-body">
+                                    <h4 class="m-0">@item.Title</h4>
+                                </div>
+                                <div class="card-footer d-lg-flex align-items-center justify-content-center">
+                                    <p>@item.Description</p>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+

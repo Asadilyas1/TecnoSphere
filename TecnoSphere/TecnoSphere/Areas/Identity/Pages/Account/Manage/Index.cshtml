@@ -1,0 +1,107 @@
+﻿@page
+@model IndexModel
+@{
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+    ViewData["Title"] = "Profile";
+
+}
+<h3>@ViewData["Title"]</h3>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Profile</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">User Profile</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <partial name="_StatusMessage" for="StatusMessage" />
+        <form id="profile-form" method="post" asp-area="Identity" asp-page="/Account/Manage/Index" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-4">
+                    <!-- Profile Image -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <div class="form-group">
+                                    <label asp-for="Input.ProfilePicture" style="width: 100%;"></label>
+                                    @if (Model.Input.ProfilePicture != null)
+                                    {
+                                        <img id="profilePicture" class="profile-user-img img-fluid img-circle" style="width:180px;height:180px; object-fit:cover" src="data:image/*;base64,@(Convert.ToBase64String(Model.Input.ProfilePicture))">
+                                    }
+                                    else
+                                    {
+                                        <img id="profilePicture" style="width:180px;height:180px; object-fit:cover" src="">
+                                    }
+                                    <input type="file"
+                                           accept=".png,.jpg,.jpeg,.gif,.tif"
+                                           asp-for="Input.ProfilePicture"
+                                           class="form-control"
+                                           style="border:0px!important;padding: 0px;padding-top: 10px;padding-bottom: 30px;"
+                                           onchange="document.getElementById('profilePicture').src = window.URL.createObjectURL(this.files[0])" />
+                                    <span asp-validation-for="Input.ProfilePicture" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <input type="hidden" asp-for="Input.Id" />
+                                <div class="form-group row">
+                                    <label for="inputName" class="col-sm-2 col-form-label">FirstName</label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="Input.FirstName" class="form-control" />
+                                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputEmail" class="col-sm-2 col-form-label">LastName</label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="Input.LastName" class="form-control" />
+                                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputName2" class="col-sm-2 col-form-label">Username</label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="Username" class="form-control" readonly />
+                                        <span asp-validation-for="Input.Username" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="Input.PhoneNumber" class="form-control" />
+                                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="offset-sm-2 col-sm-10">
+                                        <button type="submit" value="Update" class="btn btn-danger">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

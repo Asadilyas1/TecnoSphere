@@ -1,0 +1,66 @@
+﻿@model TecnoSphere.Models.ClientLogo
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Edit Logo</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Edit Logo</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<div class="container">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div class="card-body">
+                        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                            <input asp-for="LogoId" hidden />
+
+
+                            <div class="form-group">
+                                <label>Client Name :<span class="text-danger">*</span></label>
+                                <input type="text" asp-for="LogoTitle" class="form-control" placeholder="Client Name">
+                                <span asp-validation-for="LogoTitle" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Logo" name="OldImg" hidden />
+                                <label>Upload Client Logo :<span class="text-danger">*</span></label>
+
+                                <input type="file" name="file" class="form-control" placeholder="Client Logo">
+
+                                <img src="~/ClientLogo/@Model.Logo" style="width:80px;height:80px" />
+
+                                <span asp-validation-for="LogoImage" class="text-danger"></span>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <input type="submit" value="Update" class="btn btn-success" />
+                                </div>
+                                <div class="col-md-2">
+                                    <a class="btn btn-warning" asp-action="Index">Back to Page</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

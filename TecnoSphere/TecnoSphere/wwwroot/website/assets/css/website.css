@@ -1,0 +1,5 @@
+﻿@media screen and (max-width: 1920px) {
+    .header .navbar .navbar-nav > li {
+        margin-right: 60px !important;
+    }
+}

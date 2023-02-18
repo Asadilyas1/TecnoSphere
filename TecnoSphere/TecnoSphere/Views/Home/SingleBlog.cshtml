@@ -1,0 +1,227 @@
+﻿@model TecnoSphere.Models.DTO.SingleServiceVM
+@{
+    ViewData["Title"] = Model.Blog.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    string currentUrl = Context.Request.Scheme + "://" + Context.Request.Host + Context.Request.Path;
+    string enc = System.Net.WebUtility.UrlEncode(currentUrl);
+    string text = System.Net.WebUtility.UrlEncode(Model.Blog.Title);
+}
+
+<!-- Hero -->
+<section id="slider" class="hero p-0 odd featured">
+    <div class="swiper-container no-slider animation slider-h-75">
+        <div class="swiper-wrapper">
+            <!-- Particles -->
+            <div id="particles-1" class="particles full-image" data-particle="space" data-mask="70"></div>
+
+            <!-- Item 1 -->
+            <div class="swiper-slide slide-center">
+
+
+                <div class="slide-content row text-center">
+                    <div class="col-12 mx-auto inner">
+                        <h1 data-aos="zoom-out-up" data-aos-delay="400" class="title effect-static-text">@Model.Blog.Title</h1>
+                        <nav data-aos="zoom-out-up" data-aos-delay="800" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                <li class="breadcrumb-item"><a href="/news">News</a></li>
+
+                                <li class="breadcrumb-item active" aria-current="page">@Model.Blog.Title</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Content -->
+<section id="content" class="section-1 single featured">
+    <div class="container">
+        <div class="row">
+
+            <!-- Main -->
+            <main class="col-12 col-lg-8 p-0">
+                <div class="row">
+                    <div class="col-12 align-self-center">
+                        @*<img src="~/Blogs/@Model.Blog.BlogImage" title="@Model.Blog.BlogImage" />*@
+
+                        @Html.Raw(Model.Blog.BlogContent)
+                        <!-- Post Holder -->
+                        <ul class="mb-5 post-holder">
+                            <li class="post-meta-item">
+                                <time class="date"><span class="posted-on">Posted on <a href="#" rel="bookmark"><time class="entry-date published updated" datetime="2018-11-01T06:18:46+00:00">@Model.Blog.Date</time></a></span></time>
+                            </li>
+                        </ul>
+
+                        <!-- Comments -->
+                        <!--<h3>Leave a Reply</h3>
+                        <p>Sed mauris nulla, tempor eu est vel, dapibus hendrerit mauris.</p>
+                        <form>
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-12 col-lg-6 input-group p-0 pr-lg-3">
+                                        <input type="text" name="name" data-minlength="3" class="form-control" placeholder="Name" required>
+                                    </div>
+                                    <div class="col-12 col-lg-6 input-group p-0">
+                                        <input type="email" name="email" data-minlength="3" class="form-control" placeholder="Email" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 input-group p-0">
+                                        <textarea name="message" data-minlength="3" class="form-control" placeholder="Message" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12 input-group p-0">
+                                    <a id="next-3" class="send btn primary-button">SEND<i class="icon-login left"></i></a>
+                                </div>
+                            </fieldset>
+                        </form>-->
+                    </div>
+                </div>
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="col-12 col-lg-4 pl-lg-5 p-0 float-right sidebar">
+                <div class="row">
+                    <div class="col-12 align-self-center text-left">
+
+                        <!-- Widget [author] -->
+                        <div class="item widget-author">
+                            <ul class="list-group list-group-flush" >
+                                <li class="list-group-item">
+                                    <marquee width="100%" direction="up" onMouseOver="this.stop()" onMouseOut="this.start()" height="200px">
+                                        @foreach (var item in Model.blogslist)
+                                        {
+                                            <a class="author">
+                                                <img src="~/Blogs/@item.BlogImage" alt="@item.BlogImage">
+                                                <h4 class="title">@item.Title</h4>
+                                            </a>
+                                            <br />
+                                            <p class="biography">
+                                                @item.Description
+                                            </p>
+                                            <br />
+                                        }
+                                    </marquee>
+
+                                </li>
+                               
+                                <li class="d-flex justify-content-between align-items-center">
+
+                                    <span class="d-lg-flex align-items-center">
+                                        <i class="icon-user mr-2"></i>
+                                    </span>
+                                    <h6 class="mr-4">TecnoSphere</h6>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mt-5">
+                                            @foreach (var item in Model.categories)
+                                            {
+                                                <span class="badge tag active">@item.Name</span>
+                                            }
+                                            <br />
+                                        </div>
+                                    </div>
+
+
+                                </li>
+                                
+                                </ul>
+                        </div>
+
+                        <!-- Widget [categories] -->
+                        @*<div class="item widget-categories">
+                            <h4 class="title">Categories</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#">Technology</a>
+                                    <span class="badge circle">23</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#">Education</a>
+                                    <span class="badge circle">41</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#">Industry</a>
+                                    <span class="badge circle">26</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#">Development</a>
+                                    <span class="badge circle">75</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#">Architecture</a>
+                                    <span class="badge circle">39</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#">Management</a>
+                                    <span class="badge circle">62</span>
+                                </li>
+                            </ul>
+                        </div>*@
+                        <!-- Widget [tags] -->
+                        <!--<div class="item widget-tags">
+                            <h4 class="title">Popular Tags</h4>
+                            <a href="#" class="badge tag">Mobile</a>
+                            <a href="#" class="badge tag">Development</a>
+                            <a href="#" class="badge tag">Technology</a>
+                            <a href="#" class="badge tag">App</a>
+                            <a href="#" class="badge tag">Education</a>
+                            <a href="#" class="badge tag">Business</a>
+                            <a href="#" class="badge tag">Health</a>
+                            <a href="#" class="badge tag">Industry</a>
+                        </div>-->
+                        <!-- Widget [share-this] -->
+                        <div class="item widget-share-this">
+                            <h4 class="title">Share This</h4>
+                            <ul class="navbar-nav social share-list">
+                                <li class="nav-item">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=@enc" target="_blank" rel="noopener noreferrer nofollow" class="nav-link"><i class="icon-social-facebook"></i></a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href=http://www.linkedin.com/shareArticle?mini =true&url =@enc &title=@text" target="_blank" class="nav-link"><i class="icon-social-linkedin"></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://twitter.com/intent/tweet?url=@enc&text=@text" class="nav-link"><i class="icon-social-twitter"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                      
+                        <div class="item widget-gallery">
+                            <h4 class="title">Image Gallery</h4>
+                            
+                           
+                            <div class="gallery row justify-content-center">
+                                @foreach (var item in Model.BlogImages)
+                                {
+                                    <a class="col-6 item" href="../Uploads/BlogGallery/@item.Images">
+                                        <img src="../Uploads/BlogGallery/@item.Images" class="w-100">
+                                    </a>
+                                }
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(function () {
+        $('marquee').mouseover(function () {
+            $(this).attr('scrollamount', 0);
+        }).mouseout(function () {
+            $(this).attr('scrollamount', 5);
+        });
+    });
+</script>
+

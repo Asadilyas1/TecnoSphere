@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewData["Title"] = "news";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Hero -->
+<section id="slider" class="hero p-0 odd featured">
+    <div class="swiper-container animation no-slider slider-h-75">
+        <div class="swiper-wrapper">
+            <!-- Particles -->
+            <div id="particles-1" class="particles full-image" data-particle="space" data-mask="70"></div>
+
+            <!-- Item 1 -->
+            <div class="swiper-slide slide-center">
+
+
+                <div class="slide-content row text-center">
+                    <div class="col-12 mx-auto inner">
+                        <h1 data-aos="zoom-out-up" data-aos-delay="400" class="title effect-static-text">Latest News</h1>
+                        <nav data-aos="zoom-out-up" data-aos-delay="800" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="news">News</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blog -->
+<section id="blog" class="section-1 showcase blog-grid masonry news">
+    <div data-aos="zoom-in" data-aos-delay="200" data-aos-anchor="body" class="container full-grid">
+        <div class="row content blog-grid masonry">
+            <main class="col-12 p-0">
+                <div class="bricklayer items columns-4">
+                    <div class="card p-0 text-center item">
+                        <div class="image-over">
+                            <img src="assets/images/news-1-h.jpg" alt="Lorem ipsum">
+                        </div>
+                        <div class="card-caption col-12 p-0">
+                            <div class="card-body">
+                                <a href="page-single-post-1.html">
+                                    <h4>Tips for having a good relationship at work.</h4>
+                                </a>
+                            </div>
+                            <div class="card-footer d-lg-flex align-items-center justify-content-center">
+                                <a href="#" class="d-lg-flex align-items-center"><i class="icon-user"></i>John Doe</a>
+                                <a href="#" class="d-lg-flex align-items-center"><i class="icon-clock"></i>3 Days Ago</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </main>
+        </div>
+
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col-12">
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="#" tabindex="-1">
+                                <i class="icon-arrow-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">
+                                <i class="icon-arrow-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+

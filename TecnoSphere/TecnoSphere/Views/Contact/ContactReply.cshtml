@@ -1,0 +1,102 @@
+﻿@model TecnoSphere.Models.ContactUs
+@{
+    ViewData["Title"] = "ContactReply";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Contact Messages</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Contact reply</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<div class="container">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="text-center">Reply Contact Message</h5>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="row">
+                           
+                            <div class="col-md-6">
+                                <form asp-action="ReplyUser" method="post">
+                                    <input type="hidden" asp-for="Id" />
+
+                                    <textarea name="TypeMessage" class="form-control">
+
+                                     </textarea>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <a asp-action="ContactList" class="btn btn-warning mt-3">Back to Page</a>
+                                        </div>
+                                        <div class="col-md-2">
+
+                                            <input type="submit" value="Reply to user" class="btn btn-success mt-3" />
+                                        </div>
+                                    </div>
+                                </form>
+                                
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-4">
+
+                                        <ul>
+
+                                            <li><b>Email</b></li>
+                                            <li><b>Serice</b></li>
+                                            <li><b>Message Date Time</b></li>
+                                            <li><b>User Messages</b></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul>
+                                            <li>@Model.Email</li>
+                                            <li>@Model.services.Title</li>
+                                            <li>@Model.MessageDateTime</li>
+                                            <li>
+                                                <p>
+                                                    @Model.Message
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('TypeMessage', {
+                height: 150,
+                width: 520,
+              
+
+            });
+        });
+    </script>
+    }
+

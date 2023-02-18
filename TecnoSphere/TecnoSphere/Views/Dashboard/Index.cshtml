@@ -1,0 +1,191 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Members</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Members</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" style="float: left">List of Members</h3>
+                        <button type="button" id="btnNew" style="float: right" class="btn btn-primary btn-sm">Add New Member</button>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="MemberDatatable" width="100%" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Name & Correspondence address</th>
+                                        <th>Off./ Res. Address</th>
+                                        <th>Email / Website</th>
+                                        <th>Bar Council Enroll No.</th>
+                                        <th>DTBA Mem.No.</th>
+                                        <th>Date of Birth</th>
+                                        <th><i class="fa fa-gears"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<div class="modal fade" id="modal-xl">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title">Register New Member</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="form-horizontal" method="post" id="form" novalidate>
+                <input type="hidden" name="Id" value="" />
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="Name" class="form-control" id="inputEmail3" placeholder="Name">
+                                <span class="text-danger" id="nameErr"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputPassword3" class="col-sm-3 col-form-label">Mobile #</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="PhoneNumber" class="form-control" id="inputPassword3" placeholder="Mobile">
+                                <span class="text-danger" id="mobileErr"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputPassword3" class="col-sm-3 col-form-label">Fax #</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="Fax" class="form-control" id="inputPassword3" placeholder="Fax">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="inputPassword3" class="col-sm-6 col-form-label">Correspondence Address</label>
+                            <div class="col-sm-12">
+                                <textarea name="CorrespondenceAddress" class="form-control" rows="4" cols="30"></textarea>
+                                <span class="text-danger" id="corresErr"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputPassword3" class="col-sm-6 col-form-label">Off./Res Address</label>
+                            <div class="col-sm-12">
+                                <textarea name="ResAddress" class="form-control" rows="4" cols="30"></textarea>
+                                <span class="text-danger" id="resErr"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="inputEmail3" class="col-sm-6 col-form-label">Office No</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="OffNo" class="form-control" id="inputEmail3" placeholder="Office No">
+                                <span class="text-danger" id="ofcErr"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputPassword3" class="col-sm-6 col-form-label">
+                                Bar Council Enroll No.
+                            </label>
+                            <div class="col-sm-12">
+                                <input type="text" name="BarCouncil" class="form-control" id="inputPassword3" placeholder="D/4558/2014">
+                                <span class="text-danger" id="barErr"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputPassword3" class="col-sm-6 col-form-label">
+                                DTBA Mem. No.
+                            </label>
+                            <div class="col-sm-12">
+                                <input type="text" name="MemberNo" class="form-control" id="inputPassword3" placeholder="1437-G-2015 23-10-2015">
+                                <span class="text-danger" id="memErr"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="inputEmail3" class="col-sm-6 col-form-label">Date of Birth</label>
+                            <div class="col-sm-12">
+                                <input type="date" name="DateOfBirth" class="form-control" id="inputEmail3" placeholder="Date of Birth">
+                                <span class="text-danger" id="dobErr"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4" id="Email">
+                            <label for="inputPassword3" class="col-sm-6 col-form-label">
+                                Email
+                            </label>
+                            <div class="col-sm-12">
+                                <input type="email" name="Email" class="form-control" id="inputPassword3" placeholder="Email">
+                                <span class="text-danger" id="emailErr"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4" id="Password">
+                            <label for="inputPassword3" class="col-sm-6 col-form-label">
+                                Password
+                            </label>
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <input type="text" name="Password" class="form-control" id="inputPassword" placeholder="Password">
+                                        <span class="text-danger" id="passErr"></span>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" style="background: transparent;border: none;" title="Generate Password" onclick="genPassword()">
+                                            <img src="~/refresh.png" style="width: 30px;height: 30px;" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" id="btnSave" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+@section Scripts {
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+}

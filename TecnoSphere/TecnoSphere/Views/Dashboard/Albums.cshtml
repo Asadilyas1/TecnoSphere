@@ -1,0 +1,199 @@
+﻿@{
+    ViewData["Title"] = "Categories";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+<style type="text/css">
+    #the-count {
+        display: flex;
+        justify-content: end;
+        padding-right: 14px;
+    }
+    .onoffswitch {
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    width: 45px;
+}
+
+.onoffswitch-label {
+    border: 2px solid #e6e6e6;
+    border-radius: 20px !important;
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+}
+
+.onoffswitch-switch {
+    background: #a1a1a1;
+    border: 2px solid #e6e6e6;
+    border-radius: 50% !important;
+    bottom: 0;
+    height: 20px;
+    margin: 0;
+    position: absolute;
+    right: 26px;
+    top: 0;
+    transition: all .3s ease-in 0s;
+    width: 20px;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    background-color: #d64635;
+    right: 0;
+}
+
+.onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+
+.onoffswitch-inner {
+    margin-left: -100%;
+    transition: margin .3s ease-in 0s;
+    width: 200%;
+}
+
+    .onoffswitch-inner:before {
+        background-color: #eee;
+        color: #e6e6e6;
+        content: "";
+        padding-left: 10px;
+    }
+
+    .onoffswitch-inner:after,
+    .onoffswitch-inner:before {
+        box-sizing: border-box;
+        color: #fff;
+        float: left;
+        font-size: 15px;
+        font-weight: 700;
+        height: 15px;
+        line-height: 15px;
+        padding: 0;
+        width: 50%;
+    }
+
+    .onoffswitch-inner:after {
+        background-color: #eee;
+        color: #a38282;
+        content: "";
+        padding-right: 10px;
+        text-align: right;
+    }
+
+    .onoffswitch-inner:after,
+    .onoffswitch-inner:before {
+        box-sizing: border-box;
+        color: #fff;
+        float: left;
+        font-size: 15px;
+        font-weight: 700;
+        height: 15px;
+        line-height: 15px;
+        padding: 0;
+        width: 50%;
+    }
+
+input[type=checkbox] {
+    cursor: pointer;
+    margin: 0 0.5rem 0 0;
+    position: relative;
+    top: 0;
+}
+
+.onoffswitch-checkbox {
+    display: none;
+}
+</style>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Albums</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Albums</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" style="float: left">List of Albums</h3>
+                        <button type="button" id="btnNew" style="float: right" class="btn btn-primary btn-sm">Add New Album</button
+                    </div><br />
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="AlbumDatatable" width="100%" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Album Name</th>
+                                        <th><i class="fa fa-gear"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<div class="modal fade" id="modal-md">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title">Add New Album</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="form-horizontal" method="post" id="form" novalidate>
+                <input type="hidden" name="Id" value="" />
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="inputEmail3" class="col-sm-6 col-form-label">Name <span class="text-danger">*</span></label>
+                            <div class="col-sm-12">
+                                <input type="text" name="Name" class="form-control" id="inputEmail3" placeholder="Album Name">
+                                <span class="text-danger" id="nameErr"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" id="btnSave" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+@section Scripts {
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/js/AlbumDatatable.js" asp-append-version="true"></script>
+}

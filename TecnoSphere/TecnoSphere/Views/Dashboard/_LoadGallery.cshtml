@@ -1,0 +1,23 @@
+﻿@model IEnumerable<TecnoSphere.Models.Galleries>
+@using System.Drawing;
+<div class="row">
+    @{
+        var source = "";
+        foreach (var gallery in Model)
+        {
+            source = "../../Uploads/GalleryImages/" + gallery.Albums.Name + "/" + gallery.GalleryImage;
+            <div class="col-md-3">
+                    <div class="thumbnail mb-4">
+                        <div class="thumb text-center">
+                        <a href="@source" data-lightbox="1">
+                            <img src="@source" alt="" style="height: 250px !important" class="img-fluid img-thumbnail">
+                            </a>
+                            <div class="text-center">
+                                <a href="javascript:void(0)" onclick="Delete('@gallery.GalleryID')"><i class="fa fa-trash-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        }
+    }
+</div>

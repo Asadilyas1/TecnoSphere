@@ -1,0 +1,142 @@
+﻿@model TecnoSphere.Core.ViewModels.ServicesViewModelcs
+@{
+    ViewData["Title"] = "about";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Hero -->
+<section id="slider" class="hero p-0 odd featured">
+    <div class="swiper-container animation no-slider slider-h-75">
+        <div class="swiper-wrapper">
+            <!-- Particles -->
+            <div id="particles-1" class="particles full-image" data-particle="space" data-mask="70"></div>
+
+            <!-- Item 1 -->
+            <div class="swiper-slide slide-center">
+
+                <div class="slide-content row text-center">
+                    <div class="col-12 mx-auto inner">
+                        <h1 data-aos="zoom-out-up" data-aos-delay="400" class="title effect-static-text">About Us</h1>
+                        <nav data-aos="zoom-out-up" data-aos-delay="800" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="Aboutus">About us</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- About [video] -->
+<section id="video" class="section-3 highlights image-left">
+    <div class="container">
+        <div class="row">
+            <div class="gallery col-12 col-md-6">
+                <a data-poster="assets/images/about-9.jpg" href="https://www.youtube.com/watch?v=gx3h4LJFLTI">
+                    <i class="play-video icon-control-play"></i>
+                    <div class="mask-radius"></div>
+                    <img src="assets/images/About.png" class="fit-image" alt="Tecno Sphere">
+                </a>
+            </div>
+            <div class="col-12 col-md-6 pl-md-5 align-self-center text-center text-md-left">
+                <div class="row intro intro1">
+                    <div class="col-12 p-0">
+                        <h2 class="featured alt featured2">We are the best at what we do</h2>
+                        <p>Get to know a little of our history and the road we traveled that took us to the level we are today.</p>
+                    </div>
+                </div>
+                <div class="row items">
+                    <div class="col-12 p-0">
+                        <div class="row item">
+                            
+                            <div class="col-12 col-md-12 align-self-center">
+                                <h4>We start with clearly defined goals</h4>
+                                <p>You will receive quality work in the shortest possible time when you hire Tecnosphere. We listen to your needs and offer the best solution based on your requirements, without any constraints. We make sure to meet all deadlines and deliver complete satisfaction to our clients.</p>
+                            </div>
+                        </div>
+                        <div class="row item">
+                            
+                            <div class="col-12 col-md-12 align-self-center">
+                                <h4>Quality that never compromises</h4>
+                                <p>We take pride in our work and always deliver projects of the highest quality. We do not take a customer's money until we have completed the project 100% to their satisfaction. This includes on time delivery, high-quality coding, beautiful graphics, and customer service that is unmatched in the industry.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Services -->
+<section id="services" class="section-4 odd offers">
+    <div class="container">
+        <div class="row intro">
+            <div class="col-12 col-md-9 align-self-center text-center text-md-left">
+                <h2 class="featured">Our Services</h2>
+                <p>Focused on results we seek to raise the level of our customers.</p>
+            </div>
+            <div class="col-12 col-md-3 align-self-end">
+                <a href="#" class="btn mx-auto mr-md-0 ml-md-auto primary-button"><i class="icon-grid"></i>VIEW ALL</a>
+            </div>
+        </div>
+
+        <div class="row justify-content-center text-center items">
+            @{
+                bool first = true;
+
+            }
+            @foreach (var item in Model.services)
+            {
+
+
+                if (first)
+                {
+                    <div class="col-12  col-md-6 col-lg-4 item">
+                        <div class="card featured">
+                            <i class="@item.Icon"></i>
+                            <h4>@item.Title</h4>
+                            <p>@item.Description</p>
+                            <a href="@item.Slug"><i class="btn-icon icon-arrow-right-circle"></i></a>
+                        </div>
+                    </div>
+
+                    first = false;
+                }
+                else
+                {
+
+                    if (Model.services.IndexOf(item) == Model.services.Count - 1)
+                    {
+                        <div class="col-12  col-md-6 col-lg-4 item">
+                            <div class="card featured">
+                                <i class="@item.Icon"></i>
+                                <h4>@item.Title</h4>
+                                <p>@item.Description</p>
+                                <a href="@item.Slug"><i class="btn-icon icon-arrow-right-circle"></i></a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-12  col-md-6 col-lg-4 item">
+                            <div class="card ">
+                                <i class="@item.Icon"></i>
+                                <h4>@item.Title</h4>
+                                <p>@item.Description</p>
+                                <a href="@item.Slug"><i class="btn-icon icon-arrow-right-circle"></i></a>
+                            </div>
+                        </div>
+
+                    }
+
+                }
+
+            }
+        </div>
+
+    </div>
+</section>
+

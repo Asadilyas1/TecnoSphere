@@ -1,0 +1,105 @@
+﻿@model IEnumerable<TecnoSphere.Models.ClientLogo>
+@{
+
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Client Logo</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Client Logo</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<div class="container">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <a asp-action="Create" class="btn btn-primary">Add new</a>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover">
+                            <tr class="text-center">
+                                <th>Logo</th>
+                                <th>Title</th>
+
+                                <th>Action</th>
+                            </tr>
+                            @if (Model.Any())
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="text-center">
+                                        <td><img src="~/ClientLogo/@item.Logo" style="width:80px;height:80px" /></td>
+                                        <td>@item.LogoTitle</td>
+
+                                        <td>
+                                            <a class="btn btn-success fa fa-edit" asp-route-id="@item.LogoId" asp-action="Edit"></a>
+                                            <a class="btn btn-danger fa fa-trash-alt" href="javascript:void(0)" onclick="Delete('@item.LogoId')" ></a>
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            }
+
+                            else
+                            {
+
+                                <tr>
+                                    <td colspan="3" style="text-align: center">No Data Found!</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+    
+        function Delete(id) {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: "/Logo/DeleteLogo",
+                            type: "POST",
+                            data: {
+                                id: id
+                            },
+                            dataType: "json",
+                            success: function () {
+                                swal("Done!", "It was succesfully deleted!", "success");
+                                window.location.href = '../Logo/Index';
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                swal("Error deleting!", "Please try again", "error");
+                            }
+                        });
+                    } else {
+                        swal("Your imaginary file is safe!");
+                    }
+                });
+        }
+    </script>
+}

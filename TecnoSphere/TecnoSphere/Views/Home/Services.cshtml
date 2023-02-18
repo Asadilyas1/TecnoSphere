@@ -1,0 +1,65 @@
+﻿@model IEnumerable<TecnoSphere.Models.Services>
+@{
+    ViewData["Title"] = "Services";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Hero -->
+<section id="slider" class="hero p-0 odd featured">
+    <div class="swiper-container no-slider animation  slider-h-75">
+        <div class="swiper-wrapper">
+            <!-- Particles -->
+            <div id="particles-1" class="particles full-image" data-particle="space" data-mask="70"></div>
+
+            <!-- Item 1 -->
+            <div class="swiper-slide slide-center">
+
+              
+                <div class="slide-content row text-center">
+                    <div class="col-12 mx-auto inner">
+                        <h1 data-aos="zoom-out-up" data-aos-delay="400" class="title effect-static-text">Services</h1>
+                        <nav data-aos="zoom-out-up" data-aos-delay="800" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Services</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+
+    </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="section-1 odd offers">
+    <div class="container">
+        <div class="row intro">
+            <div class="col-12 col-md-9 align-self-center text-center text-md-left">
+                <h2 class="featured text-dark featured2">Our Solutions</h2>
+                <p>Focused on results we seek to raise the level of our customers.</p>
+            </div>
+            <div class="col-12 col-md-3 align-self-end">
+                <a href="#contact" class="smooth-anchor btn mx-auto mr-md-0 ml-md-auto primary-button"><i class="icon-speech"></i>GET IN TOUCH</a>
+            </div>
+        </div>
+        <div class="row justify-content-center text-center items">
+            @foreach(var item in Model)
+            {
+                <div class="col-12 col-md-6 item">
+                    <div class="card ">
+                        <i class="@item.Icon"></i>
+                        <h4>@item.Title</h4>
+                        <p class="demo-2">@item.Description</p>
+                        <a href="/services/@item.Slug"><i class="btn-icon icon-arrow-right-circle"></i></a>
+                    </div>
+                </div>
+            }
+           
+
+        </div>
+    </div>
+</section>
+
